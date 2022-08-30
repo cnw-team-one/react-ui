@@ -1,4 +1,6 @@
 import React from "react";
+import StockItemList from "../StockItemList";
+
 import {
     HeaderContainer, Header, SkipToContent, HeaderMenuButton, HeaderName,
     HeaderNavigation, HeaderMenu, HeaderMenuItem, HeaderGlobalBar,
@@ -71,43 +73,45 @@ class UIShell extends React.Component {
                                         </HeaderGlobalAction>
                                     </HeaderGlobalBar>
                                     <ErrorBoundary>
-                                        <SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
-                                            <SideNavItems>
-                                                <SideNavMenuItem element={Link} to='/'
-                                                    isActive={this.state.activeItem === '/'}
-                                                    onClick={() => { this.setState({ activeItem: '/' }) }}>
-                                                    Overview
-                                                </SideNavMenuItem>
-                                                <SideNavMenu renderIcon={Fade} title="Inventory" defaultExpanded>
-                                                    <SideNavMenuItem element={Link} to='/inventory/items'
-                                                        isActive={this.state.activeItem === '/inventory/items'}
-                                                        onClick={() => { this.setState({ activeItem: '/inventory/items' }) }}>
-                                                        Items
-                                                    </SideNavMenuItem>
-                                                </SideNavMenu>
-                                                <SideNavMenu renderIcon={Fade} title="Management">
-                                                    <SideNavMenuItem href="#">
-                                                        Link
-                                                    </SideNavMenuItem>
-                                                    <SideNavMenuItem href="#">
-                                                        Link
-                                                    </SideNavMenuItem>
-                                                    <SideNavMenuItem href="#">
-                                                        Link
-                                                    </SideNavMenuItem>
-                                                </SideNavMenu>
-                                                <SideNavMenu
-                                                    renderIcon={Fade}
-                                                    title="Docs">
-                                                    <SideNavMenuItem href="#">
-                                                        Link
-                                                    </SideNavMenuItem>
-                                                    <SideNavMenuItem href="#">
-                                                        Link
-                                                    </SideNavMenuItem>
-                                                </SideNavMenu>
-                                            </SideNavItems>
-                                        </SideNav>
+                                       
+<SideNav aria-label="Side navigation" expanded={isSideNavExpanded}>
+    <SideNavItems>
+        <SideNavMenuItem element={Link} to='/'
+            isActive={this.state.activeItem === '/'}
+            onClick={() => { this.setState({ activeItem: '/' }) }}>
+            Overview
+        </SideNavMenuItem>
+        <SideNavMenu renderIcon={Fade} title="Inventory" defaultExpanded>
+            <SideNavMenuItem element={Link} to='/inventory/items'
+                isActive={this.state.activeItem === '/inventory/items'}
+                onClick={() => { this.setState({ activeItem: '/inventory/items' }) }}>
+                Items
+            </SideNavMenuItem>
+        </SideNavMenu>
+        <SideNavMenu renderIcon={Fade} title="Management">
+            <SideNavMenuItem href="#">
+                Link
+            </SideNavMenuItem>
+            <SideNavMenuItem href="#">
+                Link
+            </SideNavMenuItem>
+            <SideNavMenuItem href="#">
+                Link
+            </SideNavMenuItem>
+        </SideNavMenu>
+        <SideNavMenu
+            renderIcon={Fade}
+            title="Docs">
+            <SideNavMenuItem href="#">
+                Link
+            </SideNavMenuItem>
+            <SideNavMenuItem href="#">
+                Link
+            </SideNavMenuItem>
+        </SideNavMenu>
+    </SideNavItems>
+</SideNav>
+
                                     </ErrorBoundary>
                                 </Header>
                             </div>
@@ -116,9 +120,10 @@ class UIShell extends React.Component {
                 </Theme>
                 <Content className='content'>
                     <Routes>
-                        <Route path="/" element={<LandingPage />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/inventory/items" element={<StockItemList />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>
                 </Content>
             </BrowserRouter>
         );
